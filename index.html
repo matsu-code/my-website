@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>松本岳流 | 自己紹介</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #1c1c1c;
+      color: #fff;
+    }
+
+    header {
+      text-align: center;
+      padding: 60px 20px 30px;
+      background-color: #2c3e50;
+      animation: fadeIn 1.5s ease-in;
+    }
+
+    header h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+      color: #00ffff;
+    }
+
+    header p {
+      font-size: 1.2em;
+      color: #ccc;
+    }
+
+    nav.tabs {
+      display: flex;
+      justify-content: center;
+      background-color: #00ffff;
+    }
+
+    nav.tabs button {
+      background: none;
+      border: none;
+      color: #1c1c1c;
+      padding: 15px 30px;
+      font-size: 1em;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    nav.tabs button:hover {
+      background-color: #00cccc;
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.5s ease-in;
+      padding: 30px 20px;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card {
+      background-color: #2c2c2c;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,255,255,0.2);
+      padding: 20px;
+      margin: 20px 0;
+    }
+
+    .hobby-horizontal {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .hobby-panel {
+      flex: 1 1 300px;
+      max-width: 320px;
+      background-color: #2c2c2c;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,255,255,0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .hobby-panel:hover {
+      transform: scale(1.02);
+    }
+
+    .hobby-panel img {
+      width: 100%;
+      height: auto;
+      display: block;
+      filter: brightness(85%);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .hobby-text {
+      padding: 15px;
+      font-size: 0.95em;
+      line-height: 1.5;
+      color: #fff;
+      background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0));
+      text-shadow: 0 0 5px #000;
+      text-align: left;
+    }
+
+    /* 相談パネル（変化付き） */
+    .consult-panels {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .consult-panel {
+      flex: 1 1 300px;
+      max-width: 320px;
+      background: linear-gradient(135deg, #003344, #005566);
+      border-left: 6px solid #00ffff;
+      border-radius: 10px;
+      padding: 20px;
+      color: #fff;
+      box-shadow: 0 0 12px rgba(0,255,255,0.2);
+      cursor: pointer;
+      transition: transform 0.3s ease, background 0.3s ease;
+      text-align: center;
+    }
+
+    .consult-panel:hover {
+      transform: scale(1.03);
+      background: linear-gradient(135deg, #004466, #006688);
+    }
+
+    .consult-icon {
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+
+    .consult-panel h3 {
+      font-size: 1.2em;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #00ffff;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+
+    /* モーダル */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.8);
+      animation: fadeIn 0.5s ease-in;
+    }
+
+    .modal-content {
+      background-color: #2c2c2c;
+      margin: 5% auto;
+      padding: 20px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 700px;
+      box-shadow: 0 0 20px rgba(0,255,255,0.3);
+      animation: slideUp 0.5s ease-out;
+    }
+
+    .modal-content h3 {
+      color: #00ffff;
+      margin-bottom: 20px;
+    }
+
+    .modal-images {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .modal-images img {
+      flex: 1 1 45%;
+      max-width: 320px;
+      border-radius: 10px;
+      border: 2px solid #00ffff33;
+      box-shadow: 0 0 10px rgba(0,255,255,0.2);
+    }
+
+    .modal-text {
+      margin-top: 20px;
+      font-size: 1em;
+      line-height: 1.6;
+      color: #fff;
+    }
+
+    .close {
+      color: #fff;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      color: #00ffff;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @media screen and (max-width: 768px) {
+      .modal-images {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .modal-images img {
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>松本岳流(まつもと たける)</h1>
+  <p>技術と自然を愛する、静岡のクリエイター</p>
+</header>
+
+<nav class="tabs">
+  <button onclick="showTab('home')">ホーム</button>
+  <button onclick="showTab('consult')">相談</button>
+  <button onclick="showTab('contact')">問い合わせ</button>
+</nav>
+
+<main>
+<!-- ホーム -->
+<section id="home" class="tab-content active">
+  <h2>プロフィール</h2>
+  <div class="card">
+    <p><strong>出身：</strong>鹿児島県</p>
+    <p><strong>現在：</strong>静岡県浜松市在住。製造業に従事する社会人3年目。</p>
+    <p>南国の風を感じながら鹿児島で育ち、現在はものづくりの街・浜松で技術と自然の両方に情熱を注いでいます。</p>
+  </div>
+
+  <h2>趣味</h2>
+  <div class="hobby-horizontal">
+    <!-- キャンプ -->
+    <div class="hobby-panel">
+      <img src="images/camp.jpg" alt="キャンプ風景" />
+      <div class="hobby-text">
+        <strong>キャンプ：</strong><br>
+        焚火と空の下で過ごす時間が最高の癒し。<br>
+        自然と向き合うことで、心がリセットされます。
+      </div>
+    </div>
+
+    <!-- カメラ -->
+    <div class="hobby-panel">
+      <img src="images/camera.jpg" alt="カメラと夕景" />
+      <div class="hobby-text">
+        <strong>カメラ（画像編集）：</strong><br>
+        風景や日常の一瞬を切り取り、<br>
+        Luminar neoなどで自分らしい色に仕上げるのが好きです。
+      </div>
+    </div>
+
+    <!-- 自転車 -->
+    <div class="hobby-panel">
+      <img src="images/bike.jpg" alt="自転車ツーリング" />
+      <div class="hobby-text">
+        <strong>自転車：</strong><br>
+        風を感じながら走る旅。<br>
+        休日にサイクリングをして景色を楽しみながら運動しています。
+      </div>
+    </div>
+  </div>
+
+  <h2>相談</h2>
+  <div class="card">
+    <p>趣味や仕事で培ったスキルを活かして、<strong>技術的な相談にも対応</strong>しています。</p>
+    <ul>
+      <li>🖥️ 自作パソコンの構成・組み立て・相談</li>
+      <li>🖼️ 画像編集（SNS用）</li>
+      <li>⚙️ Pythonによる業務自動化ツール作成</li>
+    </ul>
+    <p>詳しくは「相談」タブをご覧ください。</p>
+  </div>
+</section>
+<!-- 相談 -->
+<section id="consult" class="tab-content">
+  <h2>相談</h2>
+  <div class="consult-panels">
+    <!-- 自作PC -->
+    <div class="consult-panel" onclick="openModal('modal-pc')">
+      <div class="consult-icon">🖥️</div>
+      <h3>自作パソコン</h3>
+      <p>パーツ選びから組み立てまで、初心者にも分かりやすくサポートします。</p>
+    </div>
+
+    <!-- 画像編集 -->
+    <div class="consult-panel" onclick="openModal('modal-edit')">
+      <div class="consult-icon">🖼️</div>
+      <h3>画像編集</h3>
+      <p>SNS用の写真加工等、目的に合わせて編集します。</p>
+    </div>
+
+    <!-- 自動化ツール -->
+    <div class="consult-panel" onclick="openModal('modal-python')">
+      <div class="consult-icon">⚙️</div>
+      <h3>自動化ツール</h3>
+      <p>Pythonで業務効率化。officeの基本的な操作であれば自動可できます。</p>
+    </div>
+  </div>
+</section>
+
+<!-- モーダル：自作PC -->
+<div id="modal-pc" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('modal-pc')">&times;</span>
+    <h3>自作パソコン作成</h3>
+    <div class="modal-images">
+      <img src="images/pc1.jpg" alt="組み立て風景" />
+      <img src="images/pc2.jpg" alt="構成パーツ一覧" />
+    </div>
+    <div class="modal-text">
+      <p>目的に応じた構成提案、トラブル対応まで一貫してサポート。なんでも相談に乗ります。</p>
+    </div>
+  </div>
+</div>
+
+<!-- モーダル：画像編集 -->
+<div id="modal-edit" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('modal-edit')">&times;</span>
+    <h3>画像編集</h3>
+    <div class="modal-images">
+      <img src="images/edit1.jpg" alt="編集作業" />
+      <img src="images/edit2.jpg" alt="完成バナー" />
+    </div>
+    <div class="modal-text">
+      <p>Luminar neoを使った写真加工、目的に合わせた編集を致します。</p>
+    </div>
+  </div>
+</div>
+
+<!-- モーダル：自動化ツール -->
+<div id="modal-python" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('modal-python')">&times;</span>
+    <h3>自動化ツール作成</h3>
+    <div class="modal-images">
+      <img src="images/python1.jpg" alt="Pythonコード" />
+      <img src="images/python2.jpg" alt="ツール画面" />
+    </div>
+    <div class="modal-text">
+      <p>Pythonを使ってExcelの自動入力、Webスクレイピング、定期レポート生成など、実務に役立つツールを設計・構築します。</p>
+    </div>
+  </div>
+</div>
+<!-- 問い合わせ -->
+<section id="contact" class="tab-content">
+  <h2>お問い合わせ</h2>
+  <form>
+    <label>お名前：<input type="text" name="name" required /></label>
+    <label>メール：<input type="email" name="email" required /></label>
+    <label>内容：<textarea name="message" rows="5" required></textarea></label>
+    <button type="submit">送信</button>
+  </form>
+
+  <div class="contact-footer">
+    📧 <a href="mailto:matsutake1316@gmail.com">matsutake1316@gmail.com</a><br>
+    📷 <a href="https://www.instagram.com/machu_316" target="_blank">@machu_316</a><br>
+    &copy; 2025 松本岳流
+  </div>
+</section>
+
+</main>
+
+<script>
+  function showTab(tabId) {
+    document.querySelectorAll('.tab-content').forEach(tab => {
+      tab.classList.remove('active');
+    });
+    document.getElementById(tabId).classList.add('active');
+
+    // モーダルを閉じる
+    document.querySelectorAll('.modal').forEach(modal => {
+      modal.style.display = 'none';
+    });
+  }
+
+  function openModal(id) {
+    document.getElementById(id).style.display = 'block';
+  }
+
+  function closeModal(id) {
+    document.getElementById(id).style.display = 'none';
+  }
+</script>
+
+</body>
+</html>
+
+
+
